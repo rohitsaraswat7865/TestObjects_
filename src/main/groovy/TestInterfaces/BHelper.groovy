@@ -8,8 +8,8 @@ interface BHelper {
 
     boolean CheckIfPageIsLoaded(TestObject testObject)
     boolean CheckIfPageIsLoaded(TestObject testObject, String urlSubString)
-    boolean TryGetElement(TestObject testObject, By by, WebElement element)
-    boolean TryGetElementList(TestObject testObject, By by, def elementList)
-    boolean CheckIfElementsAreVisible(TestObject testObject, By by, def webElements)
-    boolean CheckIfElementsAreNotVisible(TestObject testObject, By by, def webElements)
+    boolean TryGetElement(TestObject testObject, By by)
+    boolean TryGetElementList(TestObject testObject, By by)
+    boolean CheckIfElementsAreVisible(TestObject testObject, By by)
+    boolean CheckIfElementsAreNotVisible(TestObject testObject, By by)
 }

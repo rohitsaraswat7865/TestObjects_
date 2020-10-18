@@ -10,6 +10,14 @@ import TestInterfaces.*
 
 class Helper implements BHelper{
 
+    WebElement webElement
+    def webElementList
+
+    Helper(){
+        this.webElement = null
+        this.webElementList = null
+    }
+
     boolean CheckIfPageIsLoaded(TestObject testObject){
         try{
             WebDriverWait explicitWait = new WebDriverWait(testObject.GetDriver(),100)
@@ -33,25 +41,25 @@ class Helper implements BHelper{
         return false
     }
 
-    boolean TryGetElement(TestObject testObject, By by, WebElement element = null){
+    boolean TryGetElement(TestObject testObject, By by){
         try{
             WebDriver driver = testObject.GetDriver()
             WebElement testElement = driver.findElement(by)
             FluentRoutine(testElement)
             if(testElement.isDisplayed() && testElement.isEnabled()){
-                testObject.elementCache << [by,testElement]
+                testObject.elementCache << [(by):(testElement)]
             }
             else{
                 return false
             }
-            element = testElement
+            this.webElement = testElement
         }catch(Exception ex){
             throw new Exception("HELPER-"+ex.getMessage())
         }
         return true
     }
 
-    boolean TryGetElementList(TestObject testObject, By by, def elementList = null){
+    boolean TryGetElementList(TestObject testObject, By by){
 
         try{
             def testElementList = testObject.GetDriver().findElements(by)
@@ -61,14 +69,14 @@ class Helper implements BHelper{
                     return false
                 }
             }
-            elementList = testElementList
+            this.webElementList = testElementList
         }catch(Exception ex){
             throw new Exception("HELPER-"+ex.getMessage())
         }
         return true
     }
 
-    boolean CheckIfElementsAreVisible(TestObject testObject, By by, def webElements){
+    boolean CheckIfElementsAreVisible(TestObject testObject, By by){
         try{
 
 
@@ -78,7 +86,7 @@ class Helper implements BHelper{
         return true
     }
 
-    boolean CheckIfElementsAreNotVisible(TestObject testObject, By by, def webElements){
+    boolean CheckIfElementsAreNotVisible(TestObject testObject, By by){
 
     }
 

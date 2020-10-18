@@ -17,6 +17,7 @@ class TestObject implements AutoCloseable {
     def resourceFolderPath
 
     {
+        this.webDriver = null
         try {
             StringBuilder strB = new StringBuilder()
             strB.append(System.getProperty("user.home").toString())
@@ -109,13 +110,16 @@ class TestObject implements AutoCloseable {
 
     void Push(def element){
         def elementCode = (element as Object).hashCode().toString()
-        this.dataCache << [(elementCode):element]
+        this.dataCache << [(elementCode):(element)]
     }
 
     void close() {
-        this.webDriver.close()
-        Thread.sleep(2000)
-        this.webDriver.quit()
+        if(this.webDriver != null){
+            this.webDriver.close()
+            Thread.sleep(2000)
+            this.webDriver.quit()
+        }
+        System.gc()
     }
 }
 
