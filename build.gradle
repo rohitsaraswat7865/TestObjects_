@@ -11,9 +11,10 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:3.0.4'
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.6'
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-groovy
-    compile group: 'io.cucumber', name: 'cucumber-groovy', version: '4.6.0'
+    compile group: 'io.cucumber', name: 'cucumber-groovy', version: '5.1.3'
     // https://mvnrepository.com/artifact/io.cucumber/cucumber-junit
     compile group: 'io.cucumber', name: 'cucumber-junit', version: '6.5.1'
     // https://mvnrepository.com/artifact/junit/junit
